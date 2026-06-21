@@ -1,0 +1,11 @@
+{
+    "schema_version": 1,
+    "commit": "42ec8c619fd4fccf8f342ed1e3a34efb91ed2a12",
+    "indexed_at": "2026-06-21T16:13:39Z",
+    "project": "home-rob-workspace-cap_aurora-aurora-dispatchers-k8s",
+    "nodes": 145,
+    "edges": 456,
+    "original_size": 1507328,
+    "compressed_size": 130833,
+    "compression_level": 9
+}
