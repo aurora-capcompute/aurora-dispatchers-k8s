@@ -1,4 +1,4 @@
-module aurora-k8s
+module aurora-dispatchers-k8s
 
 go 1.26
 
