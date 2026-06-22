@@ -107,6 +107,31 @@ func (c *failedClient) Events(context.Context, EventsRequest) (*unstructured.Uns
 	return nil, c.err
 }
 
+func (Registration) IsSubset(name string, parent, child json.RawMessage) error {
+	var parentSettings, childSettings Settings
+	if err := json.Unmarshal(parent, &parentSettings); err != nil {
+		return fmt.Errorf("decode parent settings: %w", err)
+	}
+	if err := json.Unmarshal(child, &childSettings); err != nil {
+		return fmt.Errorf("decode child settings: %w", err)
+	}
+	if len(parentSettings.Namespaces) > 0 {
+		allowed := make(map[string]struct{}, len(parentSettings.Namespaces))
+		for _, ns := range parentSettings.Namespaces {
+			allowed[ns] = struct{}{}
+		}
+		for _, ns := range childSettings.Namespaces {
+			if _, ok := allowed[ns]; !ok {
+				return fmt.Errorf("child namespace %q is not in parent's allowed namespaces", ns)
+			}
+		}
+		if len(childSettings.Namespaces) == 0 {
+			return fmt.Errorf("child must specify namespaces when parent restricts them")
+		}
+	}
+	return nil
+}
+
 func capabilityFor(name string, settings Settings) dispatcher.Capability {
 	nsNote := "all namespaces"
 	if len(settings.Namespaces) > 0 {
