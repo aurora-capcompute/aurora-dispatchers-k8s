@@ -3,8 +3,8 @@ module github.com/aurora-capcompute/aurora-dispatchers-k8s
 go 1.26
 
 require (
-	github.com/aurora-capcompute/aurora-dispatchers v0.0.0-20260627175635-4faf2ba730e0
-	github.com/aurora-capcompute/capcompute v0.0.0-20260627175620-c28899f8fb86
+	github.com/aurora-capcompute/aurora-dispatchers v0.0.0-20260627160307-40d17e383cee
+	github.com/aurora-capcompute/capcompute v0.0.0-20260627160303-6c82e54b88e6
 	k8s.io/api v0.33.1
 	k8s.io/apimachinery v0.33.1
 	k8s.io/client-go v0.33.1
